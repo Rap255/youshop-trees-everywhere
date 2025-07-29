@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register Account{% endblock %}
+{% block page_title %}Register New Account{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/account.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="form-container">
+    <form method="post" action="{% url 'register_account' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="name">Account Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <button type="submit">Create Account</button>
+    </form>
+  </div>
+{% endblock %}
