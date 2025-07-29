@@ -12,9 +12,9 @@ class AccountCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        fields = (
+        fields = [
             "name"
-        )
+        ]
 
 
 class AccountRetriveSerializer(serializers.ModelSerializer):

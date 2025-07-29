@@ -18,9 +18,9 @@
         <h1>Trees</h1>
       </div>
       <nav class="sidebar-nav">
-        <a href="{}">🌳 Dashboard</a>
+        <a href="{% url 'home'%}">🌳 Dashboard</a>
         {% if user.type_of_access_id == 1%}
-          <a href="{}">👤 Account</a>
+          <a href="{% url 'register_account'%}">👤 Account</a>
           <a href="{}">👤 Users</a>
         {% endif %}
         <a href="{}">🌱 My Trees</a>
