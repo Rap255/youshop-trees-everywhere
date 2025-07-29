@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Trees Everywhere{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="{% static 'img/tree-logo.png' %}" alt="Trees Everywhere Logo">
+        <h1>Trees</h1>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="{}">🌳 Dashboard</a>
+        {% if user.type_of_access_id == 1%}
+          <a href="{}">👤 Account</a>
+          <a href="{}">👤 Users</a>
+        {% endif %}
+        <a href="{}">🌱 My Trees</a>
+        <a href="{}">➕ Add Tree</a>
+        
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <h2>{% block page_title %}Dashboard{% endblock %}</h2>
+        </div>
+        <div class="topbar-right">
+            <button type="submit" class="logout-btn">Logout</button>
+        </div>
+      </header>
+
+      <section class="content">
+        {% block content %}{% endblock %}
+        {% block extra_js %}{% endblock %}
+      </section>
+    </main>
+  </div>
+
+  <script src="{% static 'js/dashboard.js' %}"></script>
+</body>
+</html>
