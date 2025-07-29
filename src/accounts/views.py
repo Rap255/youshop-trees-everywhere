@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from services.utils import form_formatter
 from accounts.controllers import AccountsControllers
 
+
 @login_required
 def resgister_account(request):
     if request.method == "GET":
@@ -25,3 +26,24 @@ def resgister_account(request):
                     "error":account_obj["data"]
                 }
             )
+        
+@login_required
+def list_accounts(request):
+    if request.method == "GET":
+        request_filter = {
+            "per_page":20
+        }
+        return render(
+            request,"list_accounts.html",{"user_access":request.user.type_of_access.id,"accounts":AccountsControllers.list_accounts(request_filter)["accounts"]}
+        )
+    
+
+@login_required
+def change_status_account(request,id):
+    if request.method == "GET":
+        request_filter = {
+            "per_page":20
+        }
+
+        if responses_status := AccountsControllers.deactivate_activate_account(id):
+            return redirect('list_accounts')

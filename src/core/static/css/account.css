@@ -40,3 +40,82 @@ button {
 button:hover {
   background-color: #27662b;
 }
+
+.accounts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.new-account-btn {
+  background-color: #2e7d32;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.new-account-btn:hover {
+  background-color: #27662b;
+}
+
+.accounts-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.account-card {
+  background-color: #ffffff;
+  border: 1px solid #cce0d4;
+  border-radius: 10px;
+  padding: 20px;
+  min-width: 220px;
+  flex: 1 1 30%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.account-card p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #2e4739;
+}
+
+.toggle-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff7043;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #e64a19;
+}
+
+.toggle-btn.activate {
+  background-color: #2e7d32;
+}
+.toggle-btn.activate:hover {
+  background-color: #27662b;
+}
+
+.toggle-btn.deactivate {
+  background-color: #ff7043;
+}
+.toggle-btn.deactivate:hover {
+  background-color: #e64a19;
+}
+
+@media (max-width: 768px) {
+  .account-card {
+    flex: 1 1 100%;
+  }
+}

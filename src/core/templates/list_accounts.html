@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Contas {% endblock %}
+{% block page_title %} Listagem Contas {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="accounts-header">
+    <h3>Todas Contas</h3>
+    <a href="{% url 'register_account' %}" class="new-account-btn">+ Nova Conta</a>
+  </div>
+
+  <div class="accounts-list">
+    {% for account in accounts %}
+      <div class="account-card">
+        <p><strong>Nome:</strong> {{ account.name }}</p>
+        <p><strong>Data Criação:</strong> {{ account.created }}</p>
+        <p><strong>Ativo:</strong> {{ account.active}}</p>
+        <br>
+        <a href="{% url 'change_status_account' account.id%}"
+          class="toggle-btn {% if account.active %} deactivate {% else %} activate {% endif %}">
+          {% if account.active %}
+            Desativar
+          {% else %}
+            Ativar
+          {% endif %}
+        </a>
+      </div>
+
+    {% empty %}
+      <p>No accounts found.</p>
+    {% endfor %}
+
+    
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/account-list.js' %}"></script>
+{% endblock %}

@@ -6,6 +6,7 @@ from rest_framework import serializers, exceptions
 from rest_framework.validators import UniqueValidator
 from accounts.models import Account, AccountUser
 from users.models import UserModel
+from services.utils import format_date
 
 
 class AccountCreateSerializer(serializers.ModelSerializer):
@@ -30,14 +31,19 @@ class AccountUserSerializer(serializers.ModelSerializer):
             "name"
         )
 
+        def to_representation(self, instance):
+            data = super().to_representation(instance)
+            data["account_name"] = Account.objects.get(id=data["account"]).name
+            data["user_name"] = UserModel.objects.get(id=data["user"]).name
+            return data
 
-class AccountRetriveSerializer(serializers.ModelSerializer):
+
+class AccountsRetriveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = "__all__"
 
     def to_representation(self, instance):
-        data = super().to_representation(instance)
-        data["account_name"] = Account.objects.get(id=data["account"]).name
-        data["user_name"] = UserModel.objects.get(id=data["user"]).name
-        return data
+            data = super().to_representation(instance)
+            data["created"] = format_date(str(data["created"]))
+            return data

@@ -20,7 +20,7 @@
       <nav class="sidebar-nav">
         <a href="{% url 'home'%}">🌳 Dashboard</a>
         {% if user.type_of_access_id == 1%}
-          <a href="{% url 'register_account'%}">👤 Account</a>
+          <a href="{% url 'list_accounts'%}">👤 Accounts</a>
           <a href="{}">👤 Users</a>
         {% endif %}
         <a href="{}">🌱 My Trees</a>
