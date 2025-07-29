@@ -13,7 +13,6 @@ def login(request):
         password = request.POST.get('password')
 
         user = authenticate(email=username,password=password)
-
         if user:
             login_django(request, user)
             return redirect("home")
@@ -25,4 +24,4 @@ def home(request):
     if request.method == "GET":
         return render(
             request,"dashboard.html",{"user_access":request.user.type_of_access.id}
-            )
+        )
