@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Usuários | Trees Everywhere{% endblock %}
+{% block page_title %}Listagem Usuários {% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/user.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="users-header">
+    <h3>Todos Usuários</h3>
+    <a href="{% url 'register_user' %}" class="new-user-btn">+ New User</a>
+  </div>
+
+  <div class="users-list">
+    {% for user in users %}
+      <div class="user-card">
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Date Joined:</strong> {{ user.date_joined|date:"d/m/Y" }}</p>
+        <p><strong>Active:</strong> {{ user.is_active|yesno:"Yes,No" }}</p>
+      </div>
+    {% empty %}
+      <p>No users found.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/user-list.js' %}"></script>
+{% endblock %}

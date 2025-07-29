@@ -1,0 +1,48 @@
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.new-user-btn {
+  background-color: #2e7d32;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.new-user-btn:hover {
+  background-color: #27662b;
+}
+
+.users-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.user-card {
+  background-color: #ffffff;
+  border: 1px solid #cce0d4;
+  border-radius: 10px;
+  padding: 20px;
+  min-width: 220px;
+  flex: 1 1 30%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.user-card p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #2e4739;
+}
+
+@media (max-width: 768px) {
+  .user-card {
+    flex: 1 1 100%;
+  }
+}
