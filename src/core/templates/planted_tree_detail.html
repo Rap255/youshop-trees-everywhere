@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Árvore Detalhes{% endblock %}
+{% block page_title %}Árvore Plantada Detalhe{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/planted-tree-detail.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="detail-card">
+    <h3>🌳 Árvore Plantada Info</h3>
+
+    <div class="info-group">
+      <p><strong>Plantada por:</strong> {{ planted_tree.user.first_name}} {{ planted_tree.user.last_name}}</p>
+      <p><strong>Conta:</strong> {{ planted_tree.account.name }}</p>
+      <p><strong>Idade:</strong> {{ planted_tree.age }} anos</p>
+      <p><strong>Plantado em:</strong> {{ planted_tree.planted_at }}</p>
+    </div>
+
+    <div class="info-group">
+      <p><strong>Nome Árvore/Planta:</strong> {{ planted_tree.tree.name }}</p>
+      <p><strong>Nome Científico:</strong> {{ planted_tree.tree.scientific_name }}</p>
+    </div>
+
+    <div class="info-group">
+      <p><strong>Latitude:</strong> {{ planted_tree.latitude }}</p>
+      <p><strong>Longitude:</strong> {{ planted_tree.longitude }}</p>
+    </div>
+
+    <a href="{%url 'list_my_trees' user_id%}" class="back-btn">← Voltar para Listagem de árvores</a>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/planted-tree-detail.js' %}"></script>
+{% endblock %}

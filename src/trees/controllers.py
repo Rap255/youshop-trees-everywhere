@@ -52,7 +52,7 @@ class TreesControllers():
     
     @classmethod
     def list_planted_tree_by_id(cls,id_tree):
-        return PlatendTreeRetriveSerializer(cls.modes_planted_tree.objects.get(tree_id=id_tree))
+        return PlatendTreeRetriveSerializer(cls.modes_planted_tree.objects.get(id=id_tree)).data
     
     @classmethod
     def plant_tree(cls,request):

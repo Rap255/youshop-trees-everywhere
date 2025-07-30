@@ -31,6 +31,20 @@ def list_my_trees(request,id):
                     "user_id":request.user.id
                 }
         )
+    
+@login_required
+def list_my_accounts(request,id):
+    if request.method == "GET":
+        request_filter = {
+            "per_page":20
+        }
+        return render(
+            request,"list_my_accounts.html",{
+                    "user_access":request.user.type_of_access.id,
+                    "accounts":AccountsControllers.list_accounts_by_user(id_user=request.user.id),
+                    "user_id":request.user.id
+                }
+        )
 
 @login_required
 def resgister_tree(request):
@@ -63,6 +77,21 @@ def details_trees(request,id):
                 }
         )
     
+@login_required
+def details_planed_tree_by_id(request,id):
+    if request.method == "GET":
+        request_filter = {
+            "per_page":100
+        }
+
+        return render(
+            request,"planted_tree_detail.html",{
+                    "user_access":request.user.type_of_access.id,
+                    "planted_tree":TreesControllers.list_planted_tree_by_id(id),
+                    "user_id":request.user.id
+                }
+        )
+
 @login_required
 def resgister_plantedtree(request):
     if request.method == "GET":

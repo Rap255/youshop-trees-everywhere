@@ -6,7 +6,10 @@ from rest_framework import serializers, exceptions
 from rest_framework.validators import UniqueValidator
 from services.utils import format_date
 from trees.models import Tree, PlantedTree
-
+from users.models import UserModel
+from users.serializers import UserRetriveSerializer
+from accounts.models import Account
+from accounts.serializers import AccountRetriveSerializer
 
 class TreeCreateSerializer(serializers.ModelSerializer):
 
@@ -52,4 +55,6 @@ class PlatendTreeRetriveSerializer(serializers.ModelSerializer):
         data = super().to_representation(instance)
         data['planted_at'] = format_date(data['planted_at'])
         data['tree'] = TreeCreateSerializer(Tree.objects.get(id=data['tree'])).data
+        data['user'] = UserRetriveSerializer(UserModel.objects.get(id=data['user'])).data
+        data['account'] = AccountRetriveSerializer(Account.objects.get(id=data['account'])).data
         return data

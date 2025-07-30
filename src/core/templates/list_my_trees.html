@@ -21,6 +21,8 @@
         <p><strong>Localização:</strong> {{ tree.latitude }}, {{ tree.longitude }}</p>
         <p><strong>Idade:</strong> {{ tree.age }} anos</p>
         <p><strong>Plantado em:</strong> {{ tree.planted_at }}</p>
+
+        <a href="{% url 'detail_planted_tree' tree.id %}" class="see-plants-btn">Ver as planta</a>
       </div>
     {% empty %}
       <p>You haven’t planted any trees yet.</p>

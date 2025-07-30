@@ -1,0 +1,52 @@
+.detail-card {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  width: 100%;
+  margin: 30px auto;
+  color: #2e4739;
+  border: 1px solid #cce0d4;
+}
+
+.detail-card h3 {
+  margin-bottom: 24px;
+  font-size: 22px;
+  color: #2e7d32;
+  text-align: center;
+}
+
+.info-group {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2efe6;
+}
+
+.info-group:last-of-type {
+  border-bottom: none;
+}
+
+.detail-card p {
+  margin-bottom: 8px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.back-btn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 10px 20px;
+  background-color: #2e7d32;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+  width: fit-content;
+}
+
+.back-btn:hover {
+  background-color: #27662b;
+}
