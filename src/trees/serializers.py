@@ -22,3 +22,9 @@ class TreeRetriveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tree
         fields = "__all__"
+
+
+class PlatendTreeRetriveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlantedTree
+        fields = "__all__"

@@ -21,6 +21,7 @@
         {% if plant.scientific_name %}
           <p><strong>Scientific:</strong> {{ plant.scientific_name }}</p>
         {% endif %}
+        <a href="{% url 'detail_tree' plant.id %}" class="view-plants-btn">Ver Plantas</a>
       </div>
     {% empty %}
       <p>Nenhuma Planta/Árvore encontrada.</p>

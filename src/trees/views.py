@@ -26,3 +26,14 @@ def resgister_tree(request):
             return redirect("list_trees")
         else:
             return redirect("register_tree")
+
+@login_required
+def details_trees(request,id):
+    if request.method == "GET":
+        request_filter = {
+            "per_page":100
+        }
+
+        return render(
+            request,"list_planted_trees.html",{"user_access":request.user.type_of_access.id,"planted_trees":TreesControllers.list_planted_trees(request_filter,id)["planted_trees"]}
+        )
