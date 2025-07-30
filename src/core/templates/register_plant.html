@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register Plant{% endblock %}
+{% block page_title %}Register New Plant{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/plant-register.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="form-container">
+    <form method="post" action="{% url 'register_tree' %}">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="name">Nome Planta/Árvore</label>
+        <input type="text" name="name" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="scientific_name">Nome Científico</label>
+        <input type="text" name="scientific_name" id="scientific_name">
+      </div>
+
+      <button type="submit" class="submit-btn">Criar Planta/Árvore</button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/plant-register.js' %}"></script>
+{% endblock %}

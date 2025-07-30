@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Plants | Trees Everywhere{% endblock %}
+{% block page_title %}Plants{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/plant.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="plants-header">
+    <h3>Todas Plantas</h3>
+    <a href="{% url 'register_tree'%}" class="new-plant-btn">+ Nova Planta/Árvore</a>
+  </div>
+
+  <div class="plants-list">
+    {% for plant in trees %}
+      <div class="plant-card">
+        <p><strong>Name:</strong> {{ plant.name }}</p>
+        {% if plant.scientific_name %}
+          <p><strong>Scientific:</strong> {{ plant.scientific_name }}</p>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>Nenhuma Planta/Árvore encontrada.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/plant-list.js' %}"></script>
+{% endblock %}
