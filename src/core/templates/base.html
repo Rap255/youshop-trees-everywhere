@@ -23,7 +23,7 @@
           <a href="{% url 'list_users'%}">👤 Users</a>
         {% endif %}
         {% if user.type_of_access_id == 1%}
-          <a href="{}">🌱 Trees</a>
+          <a href="{% url 'list_trees'%}">🌱 Trees</a>
         {% endif %}
         {% if user.type_of_access_id == 2%}
           <a href="{}">🌱 My Trees</a>

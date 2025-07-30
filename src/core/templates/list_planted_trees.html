@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Planted Trees | Trees Everywhere{% endblock %}
+{% block page_title %}Planted Trees{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/planted.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="planted-header">
+    <h3>Todas Árvores Plantadas</h3>
+  </div>
+
+  <div class="planted-list">
+    {% for tree in planted_trees %}
+      <div class="planted-card">
+        <p><strong>Tree:</strong> {{ tree.plant.name }}</p>
+        <p><strong>Planted by:</strong> {{ tree.user.get_full_name|default:tree.user.username }}</p>
+        <p><strong>Coordinates:</strong> {{ tree.latitude }}, {{ tree.longitude }}</p>
+        <p><strong>Created:</strong> {{ tree.created_at|date:"d/m/Y H:i" }}</p>
+      </div>
+    {% empty %}
+      <p>Nenhuma Árvore Plantada encontrada.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/planted-list.js' %}"></script>
+{% endblock %}
