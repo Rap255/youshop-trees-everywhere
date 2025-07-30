@@ -11,7 +11,7 @@ from accounts.controllers import AccountsControllers
 def resgister_account(request):
     if request.method == "GET":
         return render(
-            request,"register_account.html",{"user_access":request.user.type_of_access.id}
+            request,"register_account.html",{"user_access":request.user.type_of_access.id,"user_id":request.user.id}
         )
     if request.method == "POST":
         request_json = form_formatter(request.POST)
@@ -34,7 +34,11 @@ def list_accounts(request):
             "per_page":20
         }
         return render(
-            request,"list_accounts.html",{"user_access":request.user.type_of_access.id,"accounts":AccountsControllers.list_accounts(request_filter)["accounts"]}
+            request,"list_accounts.html",{
+                    "user_access":request.user.type_of_access.id,
+                    "accounts":AccountsControllers.list_accounts(request_filter)["accounts"],
+                    "user_id":request.user.id
+                }
         )
     
 

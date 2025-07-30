@@ -11,15 +11,35 @@ def list_trees(request):
             "per_page":20
         }
         return render(
-            request,"list_plants.html",{"user_access":request.user.type_of_access.id,"trees":TreesControllers.list_trees(request_filter)["trees"]}
+            request,"list_plants.html",{
+                    "user_access":request.user.type_of_access.id,
+                    "trees":TreesControllers.list_trees(request_filter)["trees"],
+                    "user_id":request.user.id
+                }
         )
-    
+
+@login_required
+def list_my_trees(request,id):
+    if request.method == "GET":
+        request_filter = {
+            "per_page":20
+        }
+        return render(
+            request,"list_my_trees.html",{
+                    "user_access":request.user.type_of_access.id,
+                    "planted_trees":TreesControllers.list_my_trees(request_filter,id)["trees"],
+                    "user_id":request.user.id
+                }
+        )
 
 @login_required
 def resgister_tree(request):
     if request.method == "GET":
         return render(
-            request,"register_plant.html",{"user_access":request.user.type_of_access.id}
+            request,"register_plant.html",{
+                    "user_access":request.user.type_of_access.id,
+                    "user_id":request.user.id
+                }
         )
     if request.method == "POST":
         request_json = form_formatter(request.POST)
@@ -36,7 +56,11 @@ def details_trees(request,id):
         }
 
         return render(
-            request,"list_planted_trees.html",{"user_access":request.user.type_of_access.id,"planted_trees":TreesControllers.list_planted_trees(request_filter,id)["planted_trees"]}
+            request,"list_planted_trees.html",{
+                    "user_access":request.user.type_of_access.id,
+                    "planted_trees":TreesControllers.list_planted_trees(request_filter,id)["planted_trees"],
+                    "user_id":request.user.id
+                }
         )
     
 @login_required
@@ -51,7 +75,8 @@ def resgister_plantedtree(request):
             {
                 "user_access":request.user.type_of_access.id,
                 "accounts":AccountsControllers.list_accounts_by_user(user_id),
-                "trees":TreesControllers.list_trees(request_filter)['trees']
+                "trees":TreesControllers.list_trees(request_filter)['trees'],
+                "user_id":request.user.id
             }
         )
     if request.method == "POST":

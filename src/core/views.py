@@ -31,12 +31,18 @@ def logout_view(request):
 def home(request):
     if request.method == "GET":
         return render(
-            request,"dashboard.html",{"user_access":request.user.type_of_access.id}
+            request,"dashboard.html",{
+                    "user_access":request.user.type_of_access.id,
+                    "user_id":request.user.id,
+                }
         )
     
 @login_required
 def home_user_standard(request):
     if request.method == "GET":
         return render(
-            request,"home_user.html",{"user_access":request.user.type_of_access.id}
+            request,"home_user.html",{
+                    "user_access":request.user.type_of_access.id,
+                    "user_id":request.user.id
+                }
         )

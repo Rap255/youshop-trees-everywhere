@@ -47,3 +47,9 @@ class PlatendTreeRetriveSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlantedTree
         fields = "__all__"
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['planted_at'] = format_date(data['planted_at'])
+        data['tree'] = TreeCreateSerializer(Tree.objects.get(id=data['tree'])).data
+        return data

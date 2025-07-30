@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Minhas Árvore | Trees Everywhere{% endblock %}
+{% block page_title %}Minhas Árvores{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my-trees.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="trees-header">
+    <h3>Minhas Árvores</h3>
+    <a href="{% url 'resgister_plantedtree'%}" class="new-tree-btn">+ Adicionar uma Árvore</a>
+  </div>
+
+  <div class="trees-list">
+    {% for tree in planted_trees %}
+      <div class="tree-card">
+        <p><strong>Árvore/Planta:</strong> {{ tree.tree.name }}</p>
+        <p><strong>Localização:</strong> {{ tree.latitude }}, {{ tree.longitude }}</p>
+        <p><strong>Idade:</strong> {{ tree.age }} anos</p>
+        <p><strong>Plantado em:</strong> {{ tree.planted_at }}</p>
+      </div>
+    {% empty %}
+      <p>You haven’t planted any trees yet.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/my-trees.js' %}"></script>
+{% endblock %}

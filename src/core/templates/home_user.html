@@ -10,8 +10,8 @@
 
 {% block content %}
   <div class="home-options">
-    <a href="" class="option-card">
-      <h3>🌳 Ver minhas árvores</h3>
+    <a href="{% url 'list_my_trees' user_id%}" class="option-card">
+      <h3>🌳 Ver Minhas Árvores</h3>
     </a>
     <a href="{% url 'resgister_plantedtree' %}" class="option-card">
       <h3>➕ Adicionar uma Árvore</h3>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Accounts | Trees Everywhere{% endblock %}
+{% block page_title %}My Accounts{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my-accounts.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="accounts-header">
+    <h3>Accounts I'm part of</h3>
+    <a href="{% url 'user_home' %}" class="home-btn">🏠 Home</a>
+  </div>
+
+  <div class="accounts-list">
+    {% for account in accounts %}
+      <div class="account-card">
+        <p><strong>Name:</strong> {{ account.name }}</p>
+        <p><strong>Created:</strong> {{ account.created|date:"d/m/Y" }}</p>
+        <p><strong>Active:</strong> {{ account.active|yesno:"Yes,No" }}</p>
+      </div>
+    {% empty %}
+      <p>You are not part of any accounts.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/my-accounts.js' %}"></script>
+{% endblock %}

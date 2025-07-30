@@ -25,12 +25,16 @@
           <a href="{% url 'list_users'%}">👤 Users</a>
         {% endif %}
         {% if user.type_of_access_id == 1%}
-          <a href="{% url 'list_trees'%}">🌱 Trees</a>
+          <a href="{% url 'list_trees' %}">🌱 Trees</a>
         {% endif %}
         {% if user.type_of_access_id == 2%}
-          <a href="{}">🌱 My Trees</a>
+          <a href="{% url 'home_standard' %}">🏠 Home</a>
         {% endif %}
-        <a href="{}">➕ Add Tree</a>
+        {% if user.type_of_access_id == 2%}
+          <a href="{% url 'list_my_trees' user_id%}">🌱 Minhas Árvores</a>
+        {% endif %}
+        
+        <a href="{% url 'resgister_plantedtree'%}">➕ Plantar Árvore</a>
         
       </nav>
     </aside>
