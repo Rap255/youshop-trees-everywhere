@@ -37,3 +37,7 @@ class TreesControllers():
         planted_trees_objs = cls.modes_planted_tree.objects.filter(tree_id=id_tree).order_by('id')
         return paginator(planted_trees_objs, "planted_trees", PlatendTreeRetriveSerializer, **request)
     
+    @classmethod
+    def plant_tree(cls,request):
+        ...
+    

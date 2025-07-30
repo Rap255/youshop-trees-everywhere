@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block page_title %}Bem Vindo!{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home_user.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="home-options">
+    <a href="" class="option-card">
+      <h3>🌳 Ver minhas árvores</h3>
+    </a>
+    <a href="" class="option-card">
+      <h3>➕ Adicionar uma Árvore</h3>
+    </a>
+    <a href="" class="option-card">
+      <h3>🌲 Exibir Árvores da Conta</h3>
+    </a>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/home_user.js' %}"></script>
+{% endblock %}
