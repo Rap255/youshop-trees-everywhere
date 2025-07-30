@@ -32,30 +32,30 @@ class PlantedTree(models.Model):
         UserModel,
         on_delete=models.PROTECT,
         related_name="planted_tree",
-        verbose_name=_("User"),
-        help_text=_("User"),
+        verbose_name=_("Planted Tree"),
+        help_text=_("Planted Tree"),
         null=True,
     )
 
     tree = models.ForeignKey(
         Tree,
         on_delete=models.PROTECT,
-        related_name="tree",
-        verbose_name=_("Tree"),
-        help_text=_("Tree"),
+        related_name="planted_tree",
+        verbose_name=_("Planted Tree"),
+        help_text=_("Planted Tree"),
         null=True,
     )
 
     account = models.ForeignKey(
         Account,
         on_delete=models.PROTECT,
-        related_name="account",
-        verbose_name=_("Account"),
-        help_text=_("Account"),
+        related_name="planted_tree",
+        verbose_name=_("Planted Tree"),
+        help_text=_("Planted Tree"),
         null=True,
     )
 
-    age = models.CharField(
+    age = models.IntegerField(
         verbose_name=_("Age"),
         help_text=_("Age of Tree"),
         unique=True
@@ -67,8 +67,17 @@ class PlantedTree(models.Model):
     )
 
     longitude = models.DecimalField(
+        max_digits=9, 
+        decimal_places=6,
         verbose_name=_("Longitude"),
         help_text=_("Longitude that was planted")
+    )
+
+    latitude  = models.DecimalField(
+        max_digits=9, 
+        decimal_places=6,
+        verbose_name=_("Latitude "),
+        help_text=_("Latitude  that was planted")
     )
 
     class Meta:
