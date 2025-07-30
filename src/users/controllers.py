@@ -9,6 +9,7 @@ from users.serializers import(
     UserCreateSerializer,
     UserRetriveSerializer
 )
+from accounts.controllers import AccountsControllers
 
 
 class UsersControllers():
@@ -18,10 +19,20 @@ class UsersControllers():
 
     @classmethod
     def create_user(cls,request):
-        serializer_account = UserCreateSerializer(data=request)
-        if serializer_account.is_valid(raise_exception=True):
-            account_obj = cls.model.objects.create(**serializer_account.data)
-            return account_obj
+        serializer_user = UserCreateSerializer(data=request)
+        if serializer_user.is_valid(raise_exception=True):
+            serializer_user_dict = serializer_user.data
+            serializer_user_dict["type_of_access_id"] = int(serializer_user_dict["type_of_access"])
+            del serializer_user_dict["type_of_access"]
+
+            user_obj = cls.model.objects.create(**serializer_user_dict)
+            user_obj.set_password(request["password"])
+            user_obj.save()
+
+            if serializer_user_dict["type_of_access_id"] == 2:
+                profile_obj = cls.model_profile.objects.create(user_id=user_obj.id)
+                accont_user_obj = AccountsControllers.create_account_user(id_user=user_obj.id,id_account=int(request["accounts"]))
+            return user_obj
         else:
             return {
                 "data":{"message": "an error has occured"}

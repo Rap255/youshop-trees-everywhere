@@ -1,0 +1,97 @@
+.form-container {
+  background-color: #ffffff;
+  padding: 40px 50px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  color: #2e4739;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #aab8b0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.submit-btn {
+  background-color: #2e7d32;
+  color: white;
+  padding: 12px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: #27662b;
+}
+
+
+.accounts-box {
+  background-color: #f0f7f3;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #cce0d4;
+}
+
+.accounts-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #2e4739;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #2e4739;
+}
+
+select {
+  padding: 10px;
+  border: 1px solid #aab8b0;
+  border-radius: 8px;
+  font-size: 14px;
+}
