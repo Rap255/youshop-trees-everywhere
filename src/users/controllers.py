@@ -34,6 +34,6 @@ class UsersControllers():
     
     @classmethod
     def list_users(cls,request):
-        account_objs = cls.model.objects.all().order_by('id')
-        return paginator(account_objs, "users", UserRetriveSerializer, **request)
+        users_objs = cls.model.objects.all().order_by('id')
+        return paginator(users_objs, "users", UserRetriveSerializer, **request)
     

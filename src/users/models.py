@@ -53,7 +53,7 @@ class UserModel(AbstractUser,PermissionsMixin):
 
 class Profile(models.Model):
 
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         UserModel,
         on_delete=models.CASCADE,
         related_name="profile",

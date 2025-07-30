@@ -11,19 +11,21 @@
 {% block content %}
   <div class="users-header">
     <h3>Todos Usuários</h3>
-    <a href="{% url 'register_user' %}" class="new-user-btn">+ New User</a>
+    <a href="{% url 'register_user' %}" class="new-user-btn">+ Novo Usuário</a>
   </div>
 
   <div class="users-list">
     {% for user in users %}
       <div class="user-card">
-        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Nome:</strong> {{ user.first_name }}</p>
+        <p><strong>Sobrenome:</strong> {{ user.last_name }}</p>
         <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Date Joined:</strong> {{ user.date_joined|date:"d/m/Y" }}</p>
-        <p><strong>Active:</strong> {{ user.is_active|yesno:"Yes,No" }}</p>
+        <p><strong>Data de Inscrição:</strong> {{ user.profile.joined }}</p>
+        <p><strong>Tipo de acesso:</strong> {{ user.type_of_access }}</p>
+        <p><strong>Active:</strong> {{ user.is_active }}</p>
       </div>
     {% empty %}
-      <p>No users found.</p>
+      <p>Usuários Não encontrados.</p>
     {% endfor %}
   </div>
 {% endblock %}

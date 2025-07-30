@@ -33,6 +33,6 @@ def list_users(request):
             "per_page":100
         }
         return render(
-            request,"list_users.html",{"user_access":request.user.type_of_access.id,"accounts":UsersControllers.list_users(request_filter)["users"]}
+            request,"list_users.html",{"user_access":request.user.type_of_access.id,"users":UsersControllers.list_users(request_filter)["users"]}
         )
     
