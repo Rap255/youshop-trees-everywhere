@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
     'core',
     'users',
-    'accounts'
+    'accounts',
+    'trees'
 
 ]
 
