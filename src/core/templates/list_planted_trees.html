@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Planted Trees | Trees Everywhere{% endblock %}
-{% block page_title %}Planted Trees{% endblock %}
+{% block title %}Árvores Plantadas | Trees Everywhere{% endblock %}
+{% block page_title %}Árvores Plantadas{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/planted.css' %}">
@@ -16,10 +16,10 @@
   <div class="planted-list">
     {% for tree in planted_trees %}
       <div class="planted-card">
-        <p><strong>Tree:</strong> {{ tree.plant.name }}</p>
-        <p><strong>Planted by:</strong> {{ tree.user.get_full_name|default:tree.user.username }}</p>
+        <p><strong>Tree:</strong> {{ tree.tree.name }}</p>
+        <p><strong>Planted by:</strong> {{ tree.user.first_name }} {{ tree.user.last_name }}</p>
         <p><strong>Coordinates:</strong> {{ tree.latitude }}, {{ tree.longitude }}</p>
-        <p><strong>Created:</strong> {{ tree.created_at|date:"d/m/Y H:i" }}</p>
+        <p><strong>Created:</strong> {{ tree.planted_at }}</p>
       </div>
     {% empty %}
       <p>Nenhuma Árvore Plantada encontrada.</p>

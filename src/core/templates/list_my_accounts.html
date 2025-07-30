@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Minhas Contas | Trees Everywhere{% endblock %}
+{% block page_title %}Minhas Contas{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/my-accounts.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="accounts-header">
+    <h3>Contas que faço parte</h3>
+    <a href="{% url 'home_standard' %}" class="home-btn">🏠 Home</a>
+  </div>
+
+  <div class="accounts-list">
+    {% for account in accounts %}
+      <div class="account-card">
+        <p><strong>Nome da Conta:</strong> {{ account.account.name }}</p>
+        <p><strong>Data Criação:</strong> {{ account.account.created }}</p>
+        <p><strong>Ativa:</strong> {{ account.account.active}}</p>
+
+        <a href="{}" class="see-plants-btn" >Ver as plantas</a>
+      </div>
+    {% empty %}
+      <p>Você não tem nenhuma conta associada.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/my-accounts.js' %}"></script>
+{% endblock %}

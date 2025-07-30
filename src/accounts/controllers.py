@@ -8,13 +8,15 @@ from services.utils import paginator
 from accounts.serializers import(
     AccountCreateSerializer,
     AccountRetriveSerializer,
-    AccountsRetriveSerializer
+    AccountsRetriveSerializer,
+    AccountsUserRetriveSerializer
 )
 
 
 class AccountsControllers():
     
     model = Account
+    model_account_user = AccountUser
 
     @classmethod
     def create_account(cls,request):
@@ -35,7 +37,7 @@ class AccountsControllers():
     @classmethod
     def list_accounts(cls,request):
         account_objs = cls.model.objects.all().order_by('id')
-        return paginator(account_objs, "accounts", AccountsRetriveSerializer, **request)
+        return paginator(account_objs, "accounts", AccountsRetriveSerializer, **request)   
     
     @classmethod
     def deactivate_activate_account(cls,id_account):
@@ -47,3 +49,7 @@ class AccountsControllers():
     @classmethod
     def create_account_user(cls,id_user,id_account):
         return AccountUser.objects.create(user_id=id_user,account_id=id_account)
+    
+    @classmethod
+    def list_accounts_by_user(cls,id_user):
+        return cls.model_account_user.objects.filter(user_id=id_user)

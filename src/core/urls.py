@@ -4,5 +4,6 @@ from core import views
 urlpatterns = [
     path("login",views.login,name="login"),
     path("home",views.home,name="home"),
-    path("home-standard",views.home_user_standard,name="home-standard"),
+    path("home-standard",views.home_user_standard,name="home_standard"),
+    path("logout",views.logout_view, name="logout"),
 ]

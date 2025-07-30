@@ -6,7 +6,10 @@ from rest_framework import serializers, exceptions
 from rest_framework.validators import UniqueValidator
 from services.utils import format_date
 from trees.models import Tree, PlantedTree
-
+from users.models import UserModel
+from users.serializers import UserRetriveSerializer
+from accounts.models import Account
+from accounts.serializers import AccountRetriveSerializer
 
 class TreeCreateSerializer(serializers.ModelSerializer):
 
@@ -24,14 +27,13 @@ class TreeRetriveSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class PlatendTreeCreateSerializer(serializers.ModelSerializer):
+class PlatendTreeCreateSerializer(serializers.Serializer):
     
-    user_id = serializers.IntegerField()
-    tree_id = serializers.IntegerField()
-    account = serializers.IntegerField()
-    name = serializers.CharField(max_length=100)
+    user_id = serializers.CharField(max_length=5)
+    tree_id = serializers.CharField(max_length=5)
+    account_id = serializers.CharField(max_length=5)
     age = serializers.IntegerField()
-    plantead_at = serializers.DateTimeField()
+    planted_at = serializers.DateTimeField()
     longitude = serializers.DecimalField(max_digits=9,decimal_places=6)
     latitude = serializers.DecimalField(max_digits=9,decimal_places=6)
 
@@ -48,3 +50,11 @@ class PlatendTreeRetriveSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlantedTree
         fields = "__all__"
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['planted_at'] = format_date(data['planted_at'])
+        data['tree'] = TreeCreateSerializer(Tree.objects.get(id=data['tree'])).data
+        data['user'] = UserRetriveSerializer(UserModel.objects.get(id=data['user'])).data
+        data['account'] = AccountRetriveSerializer(Account.objects.get(id=data['account'])).data
+        return data

@@ -47,3 +47,14 @@ class AccountsRetriveSerializer(serializers.ModelSerializer):
             data = super().to_representation(instance)
             data["created"] = format_date(str(data["created"]))
             return data
+    
+
+class AccountsUserRetriveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AccountUser
+        fields = "__all__"
+
+    def to_representation(self, instance):
+            data = super().to_representation(instance)
+            data["created"] = format_date(str(data["created"]))
+            return data
