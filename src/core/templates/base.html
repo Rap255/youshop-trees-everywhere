@@ -41,7 +41,7 @@
           <h2>{% block page_title %}Dashboard{% endblock %}</h2>
         </div>
         <div class="topbar-right">
-            <button type="submit" class="logout-btn">Logout</button>
+          <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
         </div>
       </header>
 

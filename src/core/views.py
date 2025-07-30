@@ -14,14 +14,18 @@ def login(request):
 
         user = authenticate(email=username,password=password)
         if user:
-            print(request.user.type_of_access.id)
+            login_django(request, user)
             if request.user.type_of_access.id == 1:
-                login_django(request, user)
                 return redirect("home")
             else:
-                return redirect("home-standard")
+                return redirect("home_standard")
         else:
             return HttpResponse("Email ou senha invalido")
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 @login_required
 def home(request):
@@ -30,7 +34,6 @@ def home(request):
             request,"dashboard.html",{"user_access":request.user.type_of_access.id}
         )
     
-
 @login_required
 def home_user_standard(request):
     if request.method == "GET":

@@ -24,14 +24,13 @@ class TreeRetriveSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class PlatendTreeCreateSerializer(serializers.ModelSerializer):
+class PlatendTreeCreateSerializer(serializers.Serializer):
     
-    user_id = serializers.IntegerField()
-    tree_id = serializers.IntegerField()
-    account = serializers.IntegerField()
-    name = serializers.CharField(max_length=100)
+    user_id = serializers.CharField(max_length=5)
+    tree_id = serializers.CharField(max_length=5)
+    account_id = serializers.CharField(max_length=5)
     age = serializers.IntegerField()
-    plantead_at = serializers.DateTimeField()
+    planted_at = serializers.DateTimeField()
     longitude = serializers.DecimalField(max_digits=9,decimal_places=6)
     latitude = serializers.DecimalField(max_digits=9,decimal_places=6)
 

@@ -15,6 +15,7 @@ from accounts.serializers import(
 class AccountsControllers():
     
     model = Account
+    model_account_user = AccountUser
 
     @classmethod
     def create_account(cls,request):
@@ -47,3 +48,7 @@ class AccountsControllers():
     @classmethod
     def create_account_user(cls,id_user,id_account):
         return AccountUser.objects.create(user_id=id_user,account_id=id_account)
+    
+    @classmethod
+    def list_accounts_by_user(cls,id_user):
+        return cls.model_account_user.objects.filter(user_id=id_user)

@@ -3,6 +3,7 @@ from trees import views
 
 urlpatterns = [
     path("register-tree",views.resgister_tree,name="register_tree"),
+    path("register-planted-tree",views.resgister_plantedtree,name="resgister_plantedtree"),
     path("list-tree",views.list_trees,name="list_trees"),
     path("dateail-tree/<int:id>",views.details_trees,name="detail_tree")
 ]

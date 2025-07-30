@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register Planted Tree{% endblock %}
+{% block page_title %}Add New Planted Tree{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/planted-register.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="form-container">
+    <form method="post" action="{% url 'resgister_plantedtree' %}">
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="age">Age (in years)</label>
+        <input type="number" name="age" id="age" min="0" required>
+      </div>
+
+      <div class="form-group">
+        <label for="planted_at">Planted At</label>
+        <input type="datetime-local" name="planted_at" id="planted_at" required>
+      </div>
+
+      <div class="form-group">
+        <label for="longitude">Longitude (decimal)</label>
+        <input type="number" step="0.000001" name="longitude" id="longitude" required>
+      </div>
+
+      <div class="form-group">
+        <label for="latitude">Latitude (decimal)</label>
+        <input type="number" step="0.000001" name="latitude" id="latitude" required>
+      </div>
+
+      <div class="form-group">
+        <label>Select Plant</label>
+        <div class="plant-options">
+          {% for plant in trees %}
+            <label class="plant-card">
+              <input type="radio" name="tree_id" value="{{ plant.id}}" required>
+              <div>
+                <strong>{{ plant.name }}</strong><br>
+                {% if plant.scientific_name %}
+                  <small><em>{{ plant.scientific_name }}</em></small>
+                {% endif %}
+              </div>
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Select Account</label>
+        <div class="account-options">
+          {% for account in accounts %}
+            <label class="account-card">
+              <input type="radio" name="account_id" value="{{ account.id|add:'0' }}" required>
+              <div>
+                <strong>{{ account.account.name }}</strong><br>
+              </div>
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Register Tree</button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/planted-register.js' %}"></script>
+{% endblock %}

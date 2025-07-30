@@ -8,7 +8,8 @@ from trees.models import PlantedTree, Tree
 from trees.serializers import (
     TreeCreateSerializer,
     TreeRetriveSerializer,
-    PlatendTreeRetriveSerializer
+    PlatendTreeRetriveSerializer,
+    PlatendTreeCreateSerializer
 )
 
 class TreesControllers():
@@ -39,5 +40,16 @@ class TreesControllers():
     
     @classmethod
     def plant_tree(cls,request):
-        ...
+        serializer_tree = PlatendTreeCreateSerializer(data=request)
+        if serializer_tree.is_valid(raise_exception=True):
+            planted_tree_info = serializer_tree.data
+            planted_tree_info['longitude'],planted_tree_info['latitude'] = planted_tree_info['location']
+            del planted_tree_info['location']
+
+            planted_tree_obj = cls.modes_planted_tree.objects.create(**planted_tree_info)
+            return planted_tree_obj
+        else:
+            return {
+                "data":{"message": "an error has occured"}
+            }
     
