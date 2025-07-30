@@ -3,7 +3,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListAPIView
-from accounts.models import Account
+from accounts.models import Account, AccountUser
 from services.utils import paginator
 from accounts.serializers import(
     AccountCreateSerializer,
@@ -43,3 +43,7 @@ class AccountsControllers():
         account_obj.active = not(account_obj.active)
         account_obj.save()
         return True
+    
+    @classmethod
+    def create_account_user(cls,id_user,id_account):
+        return AccountUser.objects.create(user_id=id_user,account_id=id_account)

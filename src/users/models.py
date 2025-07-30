@@ -49,3 +49,33 @@ class UserModel(AbstractUser,PermissionsMixin):
 
     def __str__(self):
         return self.name
+    
+
+class Profile(models.Model):
+
+    user = models.OneToOneField(
+        UserModel,
+        on_delete=models.CASCADE,
+        related_name="profile",
+        verbose_name=_("User"),
+        help_text=_("User"),
+        unique=True
+    )
+    about = models.TextField(
+        max_length=50,
+        verbose_name=_("About User"),
+        help_text=_("Description About User"),
+        null=True
+    )
+    joined = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_("Creation date"),
+        help_text=_("Creation date of profile"),
+    )
+
+
+    class Meta:
+        db_table = "profile"
+        verbose_name = _("Profile")
+        verbose_name_plural = _("Profiles")
+        ordering = ["id"]

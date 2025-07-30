@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Registrar Usuário{% endblock %}
+{% block page_title %}Registrar Novo Usuário{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/user-register.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="form-container">
+    <form method="post" action="{% url 'register_user' %}">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <label for="first_name">Nome</label>
+        <input type="text" name="first_name" id="first_name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="last_name">Sobrenome</label>
+        <input type="text" name="last_name" id="last_name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input type="password" name="password" id="password" required>
+          <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="access_type">Access Type</label>
+        <select name="type_of_access" id="type_of_access" required>
+          <option value="1">Admin</option>
+          <option value="2">Standard</option>
+        </select>
+      </div>
+
+      <div class="form-group accounts-box" id="accounts-box">
+        <label>Select Accounts</label>
+        <div class="accounts-checklist">
+          {% for account in accounts %}
+            <label class="checkbox-label">
+              <input type="checkbox" name="accounts" value="{{ account.id }}">
+              {{ account.name }}
+            </label>
+          {% empty %}
+            <p>No accounts available.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Criar Usuário</button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/user-register.js' %}"></script>
+{% endblock %}
